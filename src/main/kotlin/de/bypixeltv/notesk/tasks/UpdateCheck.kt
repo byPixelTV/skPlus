@@ -8,6 +8,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 object UpdateCheck {
     private val miniMessages = MiniMessage.miniMessage()
 
+    @Suppress("Deprecation")
     private fun schedule() {
         task(false, 36000, 144000) {
             val githubVersion = GetVersion().getLatestAddonVersion()?.replace("v", "")?.toDouble()
