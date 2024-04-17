@@ -24,7 +24,7 @@ class EffBroadcastNbs : Effect() {
 
     companion object{
         init {
-            Skript.registerEffect(EffBroadcastNbs::class.java, "[(skmusic|nbs)] broadcast (song|music) %string%")
+            Skript.registerEffect(EffBroadcastNbs::class.java, "[(skmusic|nbs|notesk)] broadcast (song|music) %string%")
         }
     }
 

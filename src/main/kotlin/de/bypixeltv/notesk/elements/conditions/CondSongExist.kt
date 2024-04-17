@@ -17,7 +17,7 @@ import java.io.File
 class CondSongExist : Condition() {
     companion object{
         init {
-            Skript.registerCondition(CondSongExist::class.java, "[(skmusic|nbs)] (song|music) %string% exist")
+            Skript.registerCondition(CondSongExist::class.java, "[(skmusic|nbs|notesk)] (song|music) %string% exist")
         }
     }
 

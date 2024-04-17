@@ -23,7 +23,7 @@ class EffPlayNbs : Effect() {
 
     companion object{
         init {
-            Skript.registerEffect(EffPlayNbs::class.java, "[(skmusic|nbs)] play (song|music) %string% to %player%")
+            Skript.registerEffect(EffPlayNbs::class.java, "[(skmusic|nbs|notesk)] play (song|music) %string% to %player%")
         }
     }
 

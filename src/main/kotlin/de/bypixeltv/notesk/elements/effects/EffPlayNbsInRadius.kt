@@ -25,7 +25,7 @@ class EffPlayNbsInRadius : Effect() {
 
     companion object{
         init {
-            Skript.registerEffect(EffPlayNbsInRadius::class.java, "[(skmusic|nbs)] play (song|music) %string% to [all] players in radius %integer% arround [location] %location%")
+            Skript.registerEffect(EffPlayNbsInRadius::class.java, "[(skmusic|nbs|notesk)] play (song|music) %string% to [all] players in radius %integer% arround [location] %location%")
         }
     }
 

@@ -19,7 +19,7 @@ class EffSetVolume : Effect() {
 
     companion object{
         init {
-            Skript.registerEffect(EffSetVolume::class.java, "(skmusic|nbs) set volume of [player] %player% to %integer%")
+            Skript.registerEffect(EffSetVolume::class.java, "[(skmusic|nbs|notesk)] set volume of [player] %player% to %integer%")
         }
     }
 

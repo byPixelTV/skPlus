@@ -19,20 +19,16 @@ class EffStopNbsBroadcast : Effect() {
 
     companion object{
         init {
-            Skript.registerEffect(EffStopNbsBroadcast::class.java, "(skmusic|nbs) stop broadcast[ing] (song|music)")
+            Skript.registerEffect(EffStopNbsBroadcast::class.java, "[(skmusic|nbs|notesk)] stop broadcast[ing] (song|music)")
         }
     }
 
-    private var player: Expression<Player>? = null
-
-    @Suppress("UNCHECKED_CAST")
     override fun init(
         expressions: Array<Expression<*>>,
         matchedPattern: Int,
         isDelayed: Kleenean,
         parser: SkriptParser.ParseResult
     ): Boolean {
-        this.player = expressions[0] as Expression<Player>
         return true
     }
 

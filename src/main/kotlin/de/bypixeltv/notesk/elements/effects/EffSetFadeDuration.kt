@@ -19,7 +19,7 @@ class EffSetFadeDuration : Effect() {
 
     companion object{
         init {
-            Skript.registerEffect(EffSetFadeDuration::class.java, "(skmusic|nbs) set fade duration of [player] %player% to %integer%")
+            Skript.registerEffect(EffSetFadeDuration::class.java, "[(skmusic|nbs|notesk)] set fade duration of [player] %player% to %integer%")
         }
     }
 

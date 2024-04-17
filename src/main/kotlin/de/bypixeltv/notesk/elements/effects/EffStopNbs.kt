@@ -22,7 +22,7 @@ class EffStopNbs : Effect() {
 
     companion object{
         init {
-            Skript.registerEffect(EffStopNbs::class.java, "[(skmusic|nbs)] stop play[ing] (song|music) to %player%")
+            Skript.registerEffect(EffStopNbs::class.java, "[(skmusic|nbs|notesk)] stop play[ing] (song|music) to %player%")
         }
     }
 
