@@ -1,0 +1,16 @@
+main: "de.bypixeltv.notesk.Main"
+name: "NoteSK"
+version: "1.0.0"
+api-version: "1.20"
+
+author: "byPixelTV"
+description: "A Skript-Addon to play .nbs songs."
+website: "https://bypixeltv.me"
+
+libraries:
+  - "dev.jorel:commandapi-bukkit-shade:9.3.0"
+  - "dev.jorel:commandapi-bukkit-kotlin:9.3.0"
+  - "net.axay:kspigot:1.20.3"
+  - "org.json:json:20240303"
+
+depend: [Skript]
