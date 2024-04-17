@@ -1,6 +1,6 @@
 main: "de.bypixeltv.notesk.Main"
 name: "NoteSK"
-version: "1.0.0"
+version: "1.0"
 api-version: "1.20"
 
 author: "byPixelTV"
@@ -13,4 +13,4 @@ libraries:
   - "net.axay:kspigot:1.20.3"
   - "org.json:json:20240303"
 
-depend: [Skript]
+depend: [Skript, NoteBlockAPI]
