@@ -39,7 +39,7 @@ class EffSetVolume : Effect() {
     }
 
     override fun toString(@Nullable e: Event?, b: Boolean): String {
-        return "(skmusic|nbs) set volume of [player] %player% to %integer%"
+        return "[(skmusic|nbs|notesk)] set volume of [player] %player% to %integer%"
     }
 
     @Suppress("DEPRECATION")

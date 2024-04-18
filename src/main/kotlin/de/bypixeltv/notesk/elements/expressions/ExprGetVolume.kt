@@ -19,7 +19,7 @@ class ExprGetVolume : SimpleExpression<Number>() {
         init {
             Skript.registerExpression(
                 ExprGetVolume::class.java, Number::class.java,
-                ExpressionType.SIMPLE, "(skmusic|nbs) %player%['s] (song|music) volume")
+                ExpressionType.SIMPLE, "[(skmusic|nbs|notesk)] %player%['s] (song|music) volume")
         }
     }
 
@@ -55,7 +55,7 @@ class ExprGetVolume : SimpleExpression<Number>() {
     }
 
     override fun toString(e: Event?, debug: Boolean): String {
-        return "(skmusic|nbs) %player%['s] (song|music) volume"
+        return "[(skmusic|nbs|notesk)] %player%['s] (song|music) volume"
     }
 
 }

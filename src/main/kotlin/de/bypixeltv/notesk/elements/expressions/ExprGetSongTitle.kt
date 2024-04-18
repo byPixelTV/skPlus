@@ -24,7 +24,7 @@ class ExprGetSongTitle : SimpleExpression<String>() {
         init {
             Skript.registerExpression(
                 ExprGetSongTitle::class.java, String::class.java,
-                ExpressionType.SIMPLE, "(skmusic|nbs) %player%['s] (song|music) title")
+                ExpressionType.SIMPLE, "[(skmusic|nbs|notesk)] %player%['s] (song|music) title")
         }
     }
 
@@ -61,7 +61,7 @@ class ExprGetSongTitle : SimpleExpression<String>() {
     }
 
     override fun toString(e: Event?, debug: Boolean): String {
-        return "(skmusic|nbs) %player%['s] (song|music) title"
+        return "[(skmusic|nbs|notesk)] %player%['s] (song|music) title"
     }
 
 }

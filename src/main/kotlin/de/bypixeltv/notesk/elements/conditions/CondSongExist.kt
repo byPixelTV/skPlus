@@ -17,7 +17,7 @@ import java.io.File
 class CondSongExist : Condition() {
     companion object{
         init {
-            Skript.registerCondition(CondSongExist::class.java, "[(skmusic|nbs|notesk)] (song|music) %string% exist")
+            Skript.registerCondition(CondSongExist::class.java, "[(skmusic|nbs|notesk)] (song|music) %string% exists")
         }
     }
 
@@ -47,7 +47,7 @@ class CondSongExist : Condition() {
     }
 
     override fun toString(e: Event?, debug: Boolean): String {
-        return "(song|music) %string% exist"
+        return "[(song|music)] (song|music) %string% exists"
     }
 
 }

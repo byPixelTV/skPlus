@@ -23,7 +23,7 @@ class ExprGetFadeDuration : SimpleExpression<Number>() {
         init {
             Skript.registerExpression(
                 ExprGetFadeDuration::class.java, Number::class.java,
-                ExpressionType.SIMPLE, "(skmusic|nbs) fade duration of [player] %player%"
+                ExpressionType.SIMPLE, "[(skmusic|nbs|notesk)] fade duration of [player] %player%"
             )
         }
     }
@@ -61,7 +61,7 @@ class ExprGetFadeDuration : SimpleExpression<Number>() {
     }
 
     override fun toString(e: Event?, debug: Boolean): String {
-        return "(skmusic|nbs) fade duration of [player] %player%"
+        return "[(skmusic|nbs|notesk)] fade duration of [player] %player%"
     }
 
 }

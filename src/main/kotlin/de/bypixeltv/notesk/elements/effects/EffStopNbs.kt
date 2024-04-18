@@ -40,7 +40,7 @@ class EffStopNbs : Effect() {
     }
 
     override fun toString(@Nullable e: Event?, b: Boolean): String {
-        return "(skmusic|nbs) stop play[ing] (song|music) to %player%"
+        return "[(skmusic|nbs|notesk)] stop play[ing] (song|music) to %player%"
     }
     public override fun execute(e: Event?) {
         val p: Player = player?.getSingle(e) ?: return

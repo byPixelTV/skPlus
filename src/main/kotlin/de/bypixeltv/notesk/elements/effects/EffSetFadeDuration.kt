@@ -39,7 +39,7 @@ class EffSetFadeDuration : Effect() {
     }
 
     override fun toString(@Nullable e: Event?, b: Boolean): String {
-        return "(skmusic|nbs) set fade duration of [player] %player% to %integer%"
+        return "[(skmusic|nbs|notesk)] set fade duration of [player] %player% to %integer%"
     }
 
     @Suppress("DEPRECATION")

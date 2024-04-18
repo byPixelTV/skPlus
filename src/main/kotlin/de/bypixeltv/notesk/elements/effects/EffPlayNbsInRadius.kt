@@ -47,7 +47,7 @@ class EffPlayNbsInRadius : Effect() {
     }
 
     override fun toString(@Nullable e: Event?, b: Boolean): String {
-        return "[(skmusic|nbs)] play (song|music) %string% to [all] players in radius %integer% arround [location] %location%"
+        return "[(skmusic|nbs|notesk)] play (song|music) %string% to [all] players in radius %integer% arround [location] %location%"
     }
     public override fun execute(e: Event?) {
         val location: Location? = loc?.getSingle(e)

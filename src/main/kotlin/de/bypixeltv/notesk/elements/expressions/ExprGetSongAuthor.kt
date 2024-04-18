@@ -24,7 +24,7 @@ class ExprGetSongAuthor : SimpleExpression<String>() {
         init {
             Skript.registerExpression(
                 ExprGetSongAuthor::class.java, String::class.java,
-                ExpressionType.SIMPLE, "(skmusic|nbs) %player%['s] (song|music) author")
+                ExpressionType.SIMPLE, "[(skmusic|nbs|notesk)] %player%['s] (song|music) author")
         }
     }
 
@@ -61,7 +61,7 @@ class ExprGetSongAuthor : SimpleExpression<String>() {
     }
 
     override fun toString(e: Event?, debug: Boolean): String {
-        return "(skmusic|nbs) %player%['s] (song|music) author"
+        return "[(skmusic|nbs|notesk)] %player%['s] (song|music) author"
     }
 
 }

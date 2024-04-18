@@ -43,7 +43,7 @@ class EffPlayNbs : Effect() {
     }
 
     override fun toString(@Nullable e: Event?, b: Boolean): String {
-        return "[(skmusic|nbs)] play (song|music) %string% to %player%"
+        return "[(skmusic|nbs|notesk)] play (song|music) %string% to %player%"
     }
     public override fun execute(e: Event?) {
         val p: Player = player?.getSingle(e) ?: return

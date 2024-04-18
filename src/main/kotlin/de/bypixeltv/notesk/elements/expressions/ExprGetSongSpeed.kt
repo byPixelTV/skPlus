@@ -24,7 +24,7 @@ class ExprGetSongSpeed : SimpleExpression<Number>() {
         init {
             Skript.registerExpression(
                 ExprGetSongSpeed::class.java, Number::class.java,
-                ExpressionType.SIMPLE, "(skmusic|nbs) %player%['s] (song|music) speed")
+                ExpressionType.SIMPLE, "[(skmusic|nbs|notesk)] %player%['s] (song|music) speed")
         }
     }
 
@@ -61,7 +61,7 @@ class ExprGetSongSpeed : SimpleExpression<Number>() {
     }
 
     override fun toString(e: Event?, debug: Boolean): String {
-        return "(skmusic|nbs) %player%['s] (song|music) speed"
+        return "[(skmusic|nbs|notesk)] %player%['s] (song|music) speed"
     }
 
 }

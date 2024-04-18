@@ -42,7 +42,7 @@ class EffBroadcastNbs : Effect() {
     }
 
     override fun toString(@Nullable e: Event?, b: Boolean): String {
-        return "[(skmusic|nbs)] broadcast (song|music) %string%"
+        return "[(skmusic|nbs|notesk)] broadcast (song|music) %string%"
     }
     public override fun execute(e: Event?) {
         var fileName: String = song?.getSingle(e).toString()

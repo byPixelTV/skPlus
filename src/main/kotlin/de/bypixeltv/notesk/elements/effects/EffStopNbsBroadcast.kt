@@ -33,7 +33,7 @@ class EffStopNbsBroadcast : Effect() {
     }
 
     override fun toString(@Nullable e: Event?, b: Boolean): String {
-        return "(skmusic|nbs) stop broadcast[ing] (song|music)"
+        return "[(skmusic|nbs)] stop broadcast[ing] (song|music)"
     }
     public override fun execute(e: Event?) {
         for (p in Bukkit.getOnlinePlayers()) {
