@@ -1,32 +1,83 @@
 package de.bypixeltv.notesk.utils
 
+import ch.njol.skript.util.Version
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import de.bypixeltv.notesk.Main
-import net.axay.kspigot.event.listen
+import net.axay.kspigot.extensions.server
 import net.kyori.adventure.text.minimessage.MiniMessage
-import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.Bukkit
+import org.bukkit.event.Listener
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.net.URL
+import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
 
-object UpdateChecker {
-    private val miniMessages = MiniMessage.miniMessage()
+/*
+    This got ported into Kotlin by @byPixelTV and was originally written in Java by ShaneBeee
+    You can find this code at https://github.com/ShaneBeee/SkBee/blob/master/src/main/java/com/shanebeestudios/skbee/api/util/UpdateChecker.java
+    Checkout https://github.com/ShaneBeee/SkBee
+*/
 
+class UpdateChecker(private val plugin: Main) : Listener {
 
-    @Suppress("DEPRECATION", "Unused")
-    val joinEvent = listen<PlayerJoinEvent> {
-        val player = it.player
-        if (Main.INSTANCE.config.getBoolean("update-checker")) {
-            if (player.hasPermission("notesk.admin.version") || player.isOp) {
-                val githubVersion = GetVersion().getLatestAddonVersion()?.replace("v", "")?.toDouble()
-                if (githubVersion != null) {
-                    if (githubVersion > Main.INSTANCE.description.version.replace("v", "").toDouble()) {
-                        player.sendMessage(miniMessages.deserialize("<dark_grey>[<gradient:#6900FF:#CF30FF:#6900FF>NoteSK</gradient>]</dark_grey> <color:#43fa00>There is an update available for NoteSK!</color> <aqua>You're on version <yellow>${Main.INSTANCE.description.version}</yellow> and the latest version is <yellow>$githubVersion</yellow></aqua>!\n\n<color:#43fa00>Download the latest version here:</color>\n<blue>https://github.com/byPixelTV/NoteSK/releases</blue><aqua>"))
-                    } else {
-                        if (githubVersion < Main.INSTANCE.description.version.replace("v", "").toDouble()) {
-                            player.sendMessage(miniMessages.deserialize("<dark_grey>[<gradient:#6900FF:#CF30FF:#6900FF>NoteSK</gradient>]</dark_grey> <color:#ff0000>You're running a development version of NoteSK! Please note that this version may contain bugs!</color> <aqua>Version <color:#ff0000>${Main.INSTANCE.description.version}</color> > <color:#43fa00>${GetVersion().getLatestAddonVersion()}</color></aqua>"))
-                        }
-                    }
+    companion object {
+        private var UPDATE_VERSION: Version? = null
+
+        fun checkForUpdate(pluginVersion: String) {
+            val miniMessages = MiniMessage.miniMessage()
+            server.consoleSender.sendMessage(miniMessages.deserialize("<grey>[<dark_purple>NoteSK</dark_purple>]</grey> Checking for updates..."))
+            getLatestReleaseVersion { version ->
+                val plugVer = Version(pluginVersion)
+                val curVer = Version(version)
+                if (curVer.compareTo(plugVer) <= 0) {
+                    server.consoleSender.sendMessage(miniMessages.deserialize("<grey>[<dark_purple>NoteSK</dark_purple>]</grey> <green>The plugin is up to date!</green>"))
                 } else {
-                    player.sendMessage(miniMessages.deserialize("<dark_grey>[<gradient:#6900FF:#CF30FF:#6900FF>NoteSK</gradient>]</dark_grey> <color:#ff0000>Unable to fetch the latest version from Github!</color> <aqua>Are you rate limited?</aqua>"))
+                    server.consoleSender.sendMessage(miniMessages.deserialize("<grey>[<dark_purple>NoteSK</dark_purple>]</grey> <red>The plugin is not up to date!</red>"))
+                    server.consoleSender.sendMessage(miniMessages.deserialize(" - Current version: <red>v${pluginVersion}</red>"))
+                    server.consoleSender.sendMessage(miniMessages.deserialize(" - Available update: <green>v${version}</green>"))
+                    server.consoleSender.sendMessage(miniMessages.deserialize(" - Download available at: <dark_purple>https://github.com/byPixelTV/NoteSK/releases</dark_purple>"))
+                    UPDATE_VERSION = curVer
                 }
             }
         }
+
+        fun getLatestReleaseVersion(consumer: Consumer<String>) {
+            val miniMessages = MiniMessage.miniMessage()
+            try {
+                val url = URL("https://api.github.com/repos/byPixelTV/NoteSK/releases/latest")
+                val reader = BufferedReader(InputStreamReader(url.openStream()))
+                val jsonObject = Gson().fromJson(reader, JsonObject::class.java)
+                var tagName = jsonObject["tag_name"].asString
+                tagName = tagName.removePrefix("v")
+                consumer.accept(tagName)
+            } catch (e: IOException) {
+                server.consoleSender.sendMessage(miniMessages.deserialize("<grey>[<dark_purple>NoteSK</dark_purple>]</grey> <red>Checking for updates failed!</red>"))
+            }
+        }
+    }
+
+    @Suppress("RedundantSamConstructor")
+    fun getUpdateVersion(currentVersion: String): CompletableFuture<Version> {
+        val future = CompletableFuture<Version>()
+        if (UPDATE_VERSION != null) {
+            future.complete(UPDATE_VERSION)
+        } else {
+            Bukkit.getScheduler().runTaskAsynchronously(this.plugin, Runnable {
+                getLatestReleaseVersion(Consumer { version ->
+                    val plugVer = Version(currentVersion)
+                    val curVer = Version(version)
+                    if (curVer.compareTo(plugVer) <= 0) {
+                        future.cancel(true)
+                    } else {
+                        UPDATE_VERSION = curVer
+                        future.complete(UPDATE_VERSION)
+                    }
+                })
+            })
+        }
+        return future
     }
 }

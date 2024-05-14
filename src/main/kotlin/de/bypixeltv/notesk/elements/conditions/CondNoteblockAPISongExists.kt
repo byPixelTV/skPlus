@@ -1,10 +1,6 @@
 package de.bypixeltv.notesk.elements.conditions
 
 import ch.njol.skript.Skript
-import ch.njol.skript.doc.Description
-import ch.njol.skript.doc.Examples
-import ch.njol.skript.doc.Name
-import ch.njol.skript.doc.Since
 import ch.njol.skript.lang.Condition
 import ch.njol.skript.lang.Expression
 import ch.njol.skript.lang.SkriptParser
@@ -14,10 +10,10 @@ import org.bukkit.event.Event
 import java.io.File
 
 
-class CondSongExist : Condition() {
+class CondNoteblockAPISongExists : Condition() {
     companion object{
         init {
-            Skript.registerCondition(CondSongExist::class.java, "[(skmusic|nbs|notesk)] (song|music) %string% exists")
+            Skript.registerCondition(CondNoteblockAPISongExists::class.java, "[(skmusic|nbs|notesk)] (song|music) %string% exists")
         }
     }
 
