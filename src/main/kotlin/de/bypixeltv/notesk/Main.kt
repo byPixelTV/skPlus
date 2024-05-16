@@ -83,7 +83,7 @@ class Main : KSpigot() {
 
         UpdateChecker.checkForUpdate(version)
 
-        Metrics(this, 21526)
+        Metrics(this, 21632)
 
         val pluginManager = server.pluginManager
         val cloudnetBridgePlugin = pluginManager.getPlugin("noteblockapi")
